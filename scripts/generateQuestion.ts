@@ -1,4 +1,4 @@
-import { ukeire1, ukeire2 } from "./ukeire";
+import { ukeire1, ukeire2 } from './ukeire'
 
 const TILES = [
   1, 1, 1, 1,
@@ -9,29 +9,28 @@ const TILES = [
   6, 6, 6, 6,
   7, 7, 7, 7,
   8, 8, 8, 8,
-  9, 9, 9, 9,
+  9, 9, 9, 9
 ]
 
 const randomTiles = (): Array<number> => {
-  let tiles = [...TILES].sort(() => 0.5 - Math.random()).slice(0, 14)
+  const tiles = [...TILES].sort(() => 0.5 - Math.random()).slice(0, 14)
   return tiles.sort()
 }
 
 const tile2Hand = (tiles:Array<number>): Array<number> => {
-  let hand = Array(9).fill(0)
-  tiles.forEach(tile => {
+  const hand = Array(9).fill(0)
+  tiles.forEach((tile) => {
     hand[tile - 1]++
   })
   return hand
 }
 
-
 export const randomQuestion = () => {
-  while (true){
-    let tiles = randomTiles()
+  while (true) {
+    const tiles = randomTiles()
     const hand = tile2Hand(tiles)
     const u2 = ukeire2(hand)
-    if (u2.shanten >= 1) continue
+    if (u2.shanten >= 1) { continue }
     if (u2.shanten === 0) {
       // remove best tile
       tiles.splice(tiles.indexOf(u2.bestTile), 1)
@@ -44,8 +43,7 @@ export const randomQuestion = () => {
     const u1 = ukeire1(hand1)
     return {
       q: tiles.join(''),
-      a: u1.ukeireList.join(''),
+      a: u1.ukeireList.join('')
     }
   }
-
 }

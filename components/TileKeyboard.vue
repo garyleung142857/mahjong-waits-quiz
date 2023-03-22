@@ -34,6 +34,7 @@
   </v-card>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import LAYERS from '@/constants/KeyboardPattern'
 export default {
   name: 'TileKeyboard',
@@ -48,11 +49,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('qna', ['addSelection', 'clearSelection']),
     inputTile (tileName) {
-      this.$emit('inputTile', tileName)
+      this.addSelection(tileName)
     },
     clearAll () {
-      console.log('clear all')
+      this.clearSelection()
     },
     submit () {
       console.log('submit')

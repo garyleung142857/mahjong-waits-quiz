@@ -1,6 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: false, // worker require this to be false
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -68,5 +71,19 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend (config, ctx) {
+      if (ctx.isClient) {
+        config.module.rules.push(
+          {
+            test: /\.worker\.ts$/,
+            loader: 'worker-loader',
+            exclude: /(node_modules)/
+          }, {
+            test: /\.worker\.js$/,
+            loader: 'worker-loader',
+            exclude: /(node_modules)/
+          })
+      }
+    }
   }
 }

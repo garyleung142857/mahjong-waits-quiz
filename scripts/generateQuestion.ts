@@ -13,8 +13,16 @@ const TILES = [
 ]
 
 const randomTiles = (): Array<number> => {
-  const tiles = [...TILES].sort(() => 0.5 - Math.random()).slice(0, 14)
-  return tiles.sort()
+  let numTiles = 14
+  const result = new Array(numTiles)
+  let len = TILES.length
+  const taken = new Array(len)
+  while (numTiles--) {
+    const x = Math.floor(Math.random() * len)
+    result[numTiles] = TILES[x in taken ? taken[x] : x]
+    taken[x] = --len in taken ? taken[len] : len
+  }
+  return result.sort()
 }
 
 const tile2Hand = (tiles:Array<number>): Array<number> => {

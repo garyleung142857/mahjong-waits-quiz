@@ -7,6 +7,7 @@
           :key="tn"
           :tile-name="tn"
           button
+          :class="{selected: selection.indexOf(tn)>=0}"
           @tileFaceClick="inputTile(tn)"
         />
       </v-row>
@@ -34,33 +35,35 @@
   </v-card>
 </template>
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import LAYERS from '@/constants/KeyboardPattern'
 export default {
   name: 'TileKeyboard',
   data () {
-    return {
-      curSuit: 'm'
-    }
+    return {}
   },
   computed: {
     curSuitLayout () {
       return LAYERS ? LAYERS[this.curSuit] : null
+    },
+    curSuit () {
+      return this.getCurrQuestion().s || 'm'
+    },
+    selection () {
+      return this.getSelection()
     }
   },
   methods: {
-    ...mapMutations('qna', ['addSelection', 'clearSelection']),
+    ...mapMutations('qna', ['toggleSelection', 'clearSelection']),
+    ...mapGetters('qna', ['getCurrQuestion', 'getSelection']),
     inputTile (tileName) {
-      this.addSelection(tileName)
+      this.toggleSelection(tileName)
     },
     clearAll () {
       this.clearSelection()
     },
     submit () {
       this.$emit('submitAnswer')
-    },
-    changeSuit (suit) {
-      this.curSuit = suit
     }
   }
 }
@@ -77,5 +80,8 @@ export default {
     align-items: center;
     position: relative;
     height: unset !important;
+  }
+  .selected{
+    outline: 3px solid rgb(255, 0, 166);
   }
 </style>

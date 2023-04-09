@@ -1,13 +1,11 @@
 <template>
   <v-row justify="center">
     <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center" />
-      <TileKeyboard @submitAnswer="submitAnswer"/>
-      <TileSelection />
-      {{ currQna }}
-      <div>
-        {{ history }}
+      <div class="sticky">
+        <TileKeyboard @submitAnswer="submitAnswer" />
+        <TileQuestion />
       </div>
+      <QuestionHistory />
     </v-col>
   </v-row>
 </template>
@@ -20,13 +18,15 @@ export default {
   name: 'IndexPage',
   data () {
     return {
-      qnaBank: null,
-      currQna: null
+      qnaBank: null
     }
   },
   computed: {
     history () {
       return this.getHistory()
+    },
+    currQuestion () {
+      return this.getCurrQuestion()
     }
   },
   mounted () {
@@ -34,20 +34,28 @@ export default {
   },
   created () {
     worker.addEventListener('message', (event) => {
-      this.currQna = event.data.qna
+      this.setCurrQna(event.data.qna)
     })
   },
   methods: {
-    ...mapGetters('qna', ['getHistory']),
-    ...mapMutations('qna', ['appendHistory', 'clearSelection']),
+    ...mapGetters('qna', ['getHistory', 'getCurrQuestion']),
+    ...mapMutations('qna', ['appendHistory', 'clearSelection', 'setCurrQna']),
     setQuestion () {
       worker.postMessage({})
     },
     submitAnswer () {
-      this.appendHistory(this.currQna)
+      this.appendHistory()
       this.setQuestion()
       this.clearSelection()
     }
   }
 }
 </script>
+<style scoped>
+.sticky{
+  position: sticky;
+  top: 20px;
+  z-index: 4;
+  background-color: white;
+}
+</style>

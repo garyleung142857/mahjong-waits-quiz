@@ -33,9 +33,8 @@ const tile2Hand = (tiles:Array<number>): Array<number> => {
   return hand
 }
 
-export const randomQuestion = (nQuestions:number = 1) => {
-  const qnaBank:Array<object> = []
-  while (qnaBank.length < nQuestions) {
+export const randomQuestion = () => {
+  while (true) {
     const tiles = randomTiles()
     const hand = tile2Hand(tiles)
     const u2 = ukeire2(hand)
@@ -50,11 +49,10 @@ export const randomQuestion = (nQuestions:number = 1) => {
     }
     const hand1 = tile2Hand(tiles)
     const u1 = ukeire1(hand1)
-    qnaBank.push({
+    return {
       q: tiles.join(''),
       a: u1.ukeireList.join(''),
       s: ['m', 'p', 's'][Math.floor(Math.random() * 3)]
-    })
+    }
   }
-  return qnaBank
 }

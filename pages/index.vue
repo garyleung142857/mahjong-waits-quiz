@@ -1,33 +1,52 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-row justify="center">
     <v-col cols="12" sm="8" md="6">
       <v-card class="logo py-4 d-flex justify-center" />
-      <TileKeyboard />
+      <TileKeyboard @submitAnswer="submitAnswer"/>
       <TileSelection />
-      {{ qnaBank }}
+      {{ currQna }}
+      <div>
+        {{ history }}
+      </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import QnaWorker from '~/assets/js/qna.worker.ts'
+import { mapGetters, mapMutations } from 'vuex'
+import QnaWorker from '~/scripts/qna.worker.ts'
 const worker = new QnaWorker()
 export default {
   name: 'IndexPage',
   data () {
     return {
-      qnaBank: null
+      qnaBank: null,
+      currQna: null
     }
   },
-  created () {
-    worker.addEventListener('message', event => console.log(event.data))
+  computed: {
+    history () {
+      return this.getHistory()
+    }
   },
   mounted () {
-    this.setQuestions(10)
+    this.setQuestion()
+  },
+  created () {
+    worker.addEventListener('message', (event) => {
+      this.currQna = event.data.qna
+    })
   },
   methods: {
-    setQuestions (nQuestions) {
-      worker.postMessage({ nQuestions })
+    ...mapGetters('qna', ['getHistory']),
+    ...mapMutations('qna', ['appendHistory', 'clearSelection']),
+    setQuestion () {
+      worker.postMessage({})
+    },
+    submitAnswer () {
+      this.appendHistory(this.currQna)
+      this.setQuestion()
+      this.clearSelection()
     }
   }
 }

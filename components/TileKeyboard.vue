@@ -57,7 +57,7 @@ export default {
       this.clearSelection()
     },
     submit () {
-      console.log('submit')
+      this.$emit('submitAnswer')
     },
     changeSuit (suit) {
       this.curSuit = suit

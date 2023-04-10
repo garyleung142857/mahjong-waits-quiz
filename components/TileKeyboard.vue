@@ -58,7 +58,7 @@ export default {
     }
   },
   mounted () {
-    this.$mousetrap.bind('esc', this.clearAll)
+    this.$mousetrap.bind(['esc', 'delete', 'backspace'], this.clearAll)
     this.$mousetrap.bind(['space', 'enter'], this.submit, 'keyup')
     this.$mousetrap.bind(['1', 'z'], () => this.inputTile('1' + this.curSuit))
     this.$mousetrap.bind(['2', 'x'], () => this.inputTile('2' + this.curSuit))
@@ -89,8 +89,10 @@ export default {
 <style scoped>
   .input-keyboard{
     align-self: center;
-    border: 3px rgb(139, 122, 105) solid;
+    border: 5px rgb(139, 122, 105) solid;
+    border-radius: 10px;
     user-select: none;
+    background-color: #FAFCFB;
   }
   .suit-btn{
     justify-content: center;
@@ -101,6 +103,7 @@ export default {
     font-weight: bold;
   }
   .selected{
-    outline: 3px solid rgb(255, 0, 166);
+    outline: 3px solid #D4EEE3;
+    background-color: #D4EEE3;
   }
 </style>

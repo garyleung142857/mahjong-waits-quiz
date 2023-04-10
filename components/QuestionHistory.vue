@@ -4,55 +4,66 @@
     tile
     class="histories pa-4"
   >
-    <v-row
+    <template
       v-for="record in history"
-      :key="record.qNum"
-      no-gutters
     >
-      <v-col cols="1" class="d-flex">
-        <v-row no-gutters class="d-inline-flex justify-center align-center">
-          {{ record.qNum }}
-        </v-row>
-      </v-col>
-      <v-col cols="10">
-        <v-row no-gutters>
-          <v-card
-            flat
-            tile
-            class="record d-flex ma-0 flex-wrap mb-4"
-            width="100%"
-          >
-            <TileImage
-              v-for="(tn, idx) in record.hand"
-              :key="idx"
-              :tile-name="tn"
-              small
-            />
-          </v-card>
-        </v-row>
-        <v-row no-gutters>
-          <span
-            class="record-answer"
-          >
-            <v-icon> mdi-check </v-icon> {{ record.answer }}
-          </span>
-          <span
-            v-show="!record.isCorrect"
-            class="record-attempt"
-          >
-            <v-icon> mdi-pen </v-icon> {{ record.attempt }}
-          </span>
-        </v-row>
-      </v-col>
-      <v-col
-        cols="1"
-        class="d-flex"
+      <v-row
+        :key="record.qNum"
+        no-gutters
       >
-        <v-icon>
-          {{ record.isCorrect ? 'mdi-check-circle-outline' : 'mdi-close-box-outline' }}
-        </v-icon>
-      </v-col>
-    </v-row>
+        <v-col
+          cols="1"
+          class="d-flex"
+          :class="record.isCorrect ? 'teal lighten-4' : 'pink lighten-4'"
+        >
+          <v-row
+            no-gutters
+            class="d-inline-flex justify-center align-center"
+          >
+            {{ record.qNum }}
+          </v-row>
+        </v-col>
+        <v-col
+          cols="11"
+          class="d-flex flex-wrap"
+        >
+          <v-row no-gutters>
+            <v-card
+              flat
+              tile
+              class="record d-flex ma-0 flex-wrap mb-4"
+              width="100%"
+            >
+              <TileImage
+                v-for="(tn, idx) in record.hand"
+                :key="idx"
+                :tile-name="tn"
+                small
+              />
+            </v-card>
+          </v-row>
+          <v-row
+            no-gutters
+            class="d-flex align-center"
+          >
+            <span
+              class="record-answer"
+            >
+              <v-icon> mdi-check </v-icon> {{ record.answer }}
+            </span>
+            <span
+              v-show="!record.isCorrect"
+              class="record-attempt"
+            >
+              <v-icon> mdi-pen </v-icon> {{ record.attempt }}
+            </span>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-divider
+        :key="'div' + record.qNum"
+      />
+    </template>
   </v-card>
 </template>
 <script>
@@ -90,7 +101,11 @@ export default {
 
 <style scoped>
   .histories{
-    background-color: transparent;
+    height: 250px;
+    overflow-y: scroll;
+    background-color: #FAFCFB;
+    border: 5px solid #a2d2ff;
+    border-radius: 10px !important;
   }
   .record {
     min-height: 40px;

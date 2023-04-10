@@ -36,11 +36,11 @@ export default {
 <style scoped>
   .question {
     min-height: 80px;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    border-top: 5px transparent solid;
-    border-bottom: 5px rgb(100, 83, 67) solid;
-    background-color: rgb(238, 231, 222);
+    border: 5px solid #E5EBD7;
+    border-radius: 10px !important;
+    background-color: #FAFCFB;
     line-height: 1.15;
   }
 </style>

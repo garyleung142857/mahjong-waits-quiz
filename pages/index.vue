@@ -1,9 +1,7 @@
 <template>
   <v-container class="d-flex flex-column pa-0">
-    <div class="d-flex flex-column sticky">
-      <TileKeyboard @submitAnswer="submitAnswer" />
-      <TileQuestion />
-    </div>
+    <TileKeyboard @submitAnswer="submitAnswer" />
+    <TileQuestion />
     <QuestionHistory />
   </v-container>
 </template>
@@ -43,8 +41,8 @@ export default {
     },
     submitAnswer () {
       this.appendHistory()
-      this.setQuestion()
       this.clearSelection()
+      this.setQuestion()
     }
   }
 }

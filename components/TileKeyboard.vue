@@ -57,6 +57,19 @@ export default {
       return this.getSelection()
     }
   },
+  mounted () {
+    this.$mousetrap.bind('esc', this.clearAll)
+    this.$mousetrap.bind(['space', 'enter'], this.submit, 'keyup')
+    this.$mousetrap.bind(['1', 'z'], () => this.inputTile('1' + this.curSuit))
+    this.$mousetrap.bind(['2', 'x'], () => this.inputTile('2' + this.curSuit))
+    this.$mousetrap.bind(['3', 'c'], () => this.inputTile('3' + this.curSuit))
+    this.$mousetrap.bind(['4', 'a'], () => this.inputTile('4' + this.curSuit))
+    this.$mousetrap.bind(['5', 's'], () => this.inputTile('5' + this.curSuit))
+    this.$mousetrap.bind(['6', 'd'], () => this.inputTile('6' + this.curSuit))
+    this.$mousetrap.bind(['7', 'q'], () => this.inputTile('7' + this.curSuit))
+    this.$mousetrap.bind(['8', 'w'], () => this.inputTile('8' + this.curSuit))
+    this.$mousetrap.bind(['9', 'e'], () => this.inputTile('9' + this.curSuit))
+  },
   methods: {
     ...mapMutations('qna', ['toggleSelection', 'clearSelection']),
     ...mapGetters('qna', ['getCurrQuestion', 'getSelection']),

@@ -5,3 +5,5 @@ ctx.addEventListener('message', () => {
   const qna = randomQuestion()
   ctx.postMessage({ qna })
 })
+
+export default ctx

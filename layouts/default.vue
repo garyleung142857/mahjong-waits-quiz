@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <v-container>
+      <v-container id="app">
         <Nuxt />
       </v-container>
     </v-main>
@@ -18,3 +18,16 @@ export default {
   }
 }
 </script>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  background-color: rgb(252, 249, 243);
+  height: '100vh';
+  max-width: 700px;
+  min-width: 400px;
+  margin: auto;
+}
+</style>

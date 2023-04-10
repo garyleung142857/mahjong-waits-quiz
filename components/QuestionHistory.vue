@@ -2,9 +2,9 @@
   <v-card
     flat
     tile
-    class="pa-4"
+    class="histories pa-4"
   >
-  <v-row
+    <v-row
       v-for="record in history"
       :key="record.qNum"
       no-gutters
@@ -89,12 +89,16 @@ export default {
 </script>
 
 <style scoped>
+  .histories{
+    background-color: transparent;
+  }
   .record {
     min-height: 40px;
     justify-content: flex-start;
     align-items: center;
     line-height: 1.15;
     margin-bottom: 0 !important;
+    background-color: transparent;
   }
   .record-answer{
     font-size: smaller;

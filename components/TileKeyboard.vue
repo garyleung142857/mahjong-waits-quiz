@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="input-keyboard d-flex justify-start pa-2 mb-4">
+  <v-card flat class="input-keyboard d-flex pa-2 mb-4">
     <v-card flat class="pa-1">
       <v-row v-for="(r, rowid) in curSuitLayout" :key="rowid" dense class="d-flex justify-end">
         <TileImage
@@ -13,9 +13,11 @@
       </v-row>
     </v-card>
     <v-card flat class="pa-1 d-flex flex-column">
-      <v-row dense class="d-flex" align-content="stretch">
+      <v-row dense class="d-flex">
         <v-btn
           class="suit-btn pa-1 ma-1"
+          outlined
+          color="pink lighten-2"
           :ripple="false"
           @click="clearAll()"
         >
@@ -25,6 +27,8 @@
       <v-row dense class="d-flex">
         <v-btn
           class="suit-btn pa-1 ma-1"
+          outlined
+          color="teal lighten-2"
           :ripple="false"
           @click="submit()"
         >
@@ -80,6 +84,8 @@ export default {
     align-items: center;
     position: relative;
     height: unset !important;
+    border: 3px solid;
+    font-weight: bold;
   }
   .selected{
     outline: 3px solid rgb(255, 0, 166);

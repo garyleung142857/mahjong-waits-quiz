@@ -1,13 +1,11 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="sticky">
-        <TileKeyboard @submitAnswer="submitAnswer" />
-        <TileQuestion />
-      </div>
-      <QuestionHistory />
-    </v-col>
-  </v-row>
+  <v-container class="d-flex flex-column pa-0">
+    <div class="d-flex flex-column sticky">
+      <TileKeyboard @submitAnswer="submitAnswer" />
+      <TileQuestion />
+    </div>
+    <QuestionHistory />
+  </v-container>
 </template>
 
 <script>
@@ -56,6 +54,6 @@ export default {
   position: sticky;
   top: 20px;
   z-index: 4;
-  background-color: white;
+  background-color: rgb(252, 249, 243);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <v-container class="d-flex flex-column pa-0">
-    <TileKeyboard @submitAnswer="submitAnswer" />
     <TileQuestion />
+    <TileKeyboard @submitAnswer="submitAnswer" />
     <QuestionHistory />
   </v-container>
 </template>

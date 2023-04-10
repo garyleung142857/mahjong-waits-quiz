@@ -2,7 +2,7 @@
   <v-card
     flat
     tile
-    class="question d-flex ma-0 flex-wrap mb-4"
+    class="question d-flex my-2 flex-wrap "
     width="100%"
   >
     <TileImage

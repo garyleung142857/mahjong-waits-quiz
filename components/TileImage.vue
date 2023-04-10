@@ -38,12 +38,12 @@ export default {
 
 <style scoped>
   .tileFace {
-    height: 48px;
+    height: max(40px, min(10vw, 60px));
+    font-size: max(40px, min(10vw, 60px));
     line-height: 0.6;
-    font-size: 48px;
     font-family: 'Mahjong';
     text-align: center;
-    margin: 2px;
+    margin: 1px;
   }
   .tile-text {
     height: 40px;
@@ -52,14 +52,14 @@ export default {
     margin: 1px;
   }
   .tile-text-small{
-    height: 36px;
-    font-size: 36px;
+    height: max(36px, min(9vw, 48px));
+    font-size: max(36px, min(9vw, 48px));
     line-height: 0.6;
     margin: 1px;
   }
   .tile-button {
-    height: 60px;
-    font-size: 60px;
+    height: 70px;
+    font-size: 70px;
     line-height: 0.6;
     margin: 3px;
     padding: 3px 6px;

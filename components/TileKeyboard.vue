@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="input-keyboard d-flex pa-2 mb-4">
+  <v-card flat class="input-keyboard d-flex pa-2 ma-2">
     <v-card flat class="pa-1">
       <v-row v-for="(r, rowid) in curSuitLayout" :key="rowid" dense class="d-flex justify-end">
         <TileImage

@@ -2,7 +2,7 @@
   <v-card
     flat
     tile
-    class="histories pa-4"
+    class="histories my-2"
   >
     <template
       v-for="record in history"
@@ -101,12 +101,18 @@ export default {
 
 <style scoped>
   .histories{
-    height: 250px;
-    overflow-y: scroll;
+    height: 300px;
     background-color: #FAFCFB;
     border: 5px solid #a2d2ff;
     border-radius: 10px !important;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
+  .histories::-webkit-scrollbar {
+    display: none;
+  }
+
   .record {
     min-height: 40px;
     justify-content: flex-start;

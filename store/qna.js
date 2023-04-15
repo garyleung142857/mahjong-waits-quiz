@@ -1,6 +1,8 @@
 const state = () => ({
   selection: [],
   currentNum: 0,
+  correctCount: 0,
+  totalCount: 0,
   history: [],
   currQna: {}
 })
@@ -22,6 +24,12 @@ const getters = {
         s: state.currQna.s
       }
     }
+  },
+  getCurrentScore (state) {
+    return {
+      correctCount: state.correctCount,
+      totalCount: state.totalCount
+    }
   }
 }
 
@@ -41,15 +49,29 @@ const mutations = {
   },
   appendHistory (state) {
     const attempt = state.selection.map(tile => tile[0]).join('')
+    const isCorrect = attempt === state.currQna.a
+    if (isCorrect) {
+      state.correctCount += 1
+    }
     state.history.push({
       ...state.currQna,
       n: state.currentNum,
+      isCorrect,
       attempt
     })
+    state.totalCount += 1
   },
   setCurrQna (state, qna) {
     state.currentNum += 1
     state.currQna = qna
+  },
+  resetHistory (state) {
+    state.selection = []
+    state.currentNum = 0
+    state.correctCount = 0
+    state.totalCount = 0
+    state.history = []
+    // state.currQna = {}
   }
 }
 

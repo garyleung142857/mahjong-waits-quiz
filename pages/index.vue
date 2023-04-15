@@ -1,5 +1,6 @@
 <template>
   <v-container class="d-flex flex-column pa-0">
+    <HeaderMenu />
     <TileQuestion />
     <TileKeyboard @submitAnswer="submitAnswer" />
     <QuestionHistory />
@@ -34,14 +35,18 @@ export default {
     })
   },
   methods: {
-    ...mapGetters('qna', ['getHistory', 'getCurrQuestion']),
-    ...mapMutations('qna', ['appendHistory', 'clearSelection', 'setCurrQna']),
+    ...mapGetters('qna', ['getHistory', 'getCurrQuestion', 'getTotalCorrect']),
+    ...mapMutations('qna', ['appendHistory', 'clearSelection', 'setCurrQna', 'resetHistory']),
     setQuestion () {
       worker.postMessage({})
     },
     submitAnswer () {
       this.appendHistory()
       this.clearSelection()
+      this.setQuestion()
+    },
+    resetAll () {
+      this.resetHistory()
       this.setQuestion()
     }
   }
@@ -53,5 +58,8 @@ export default {
   top: 20px;
   z-index: 4;
   background-color: rgb(252, 249, 243);
+}
+.side-btn{
+  border: 3px solid grey;
 }
 </style>

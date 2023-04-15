@@ -4,6 +4,23 @@
     tile
     class="histories my-2"
   >
+    <v-row 
+      v-if="history.length > 0"
+      no-gutters
+    >
+      <v-col cols="6">
+        <v-btn
+          v-longpress="resetHistory"
+          text
+          class="reset-btn pa-2"
+        >
+          Hold to reset
+        </v-btn>
+      </v-col>
+      <v-col cols="6" class="d-flex justify-center align-center">
+        Score: {{ currentScore }}
+      </v-col>
+    </v-row>
     <template
       v-for="record in history"
     >
@@ -67,17 +84,23 @@
   </v-card>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { tileStringToArray } from '@/scripts/helper'
 export default {
   name: 'QuestionHistory',
   computed: {
     history () {
       return this.getHistory().map(r => this.formatRecord(r)).reverse()
-    }
+    },
+    currentScore () {
+      const totalCount = this.history.length
+      const correctCount = this.history.map(h => h.isCorrect).length
+      return `${correctCount} / ${totalCount}`
+    },
   },
   methods: {
     ...mapGetters('qna', ['getHistory']),
+    ...mapMutations('qna', ['resetHistory']),
     formatRecord (record) {
       const qNum = record.n
       const hand = tileStringToArray(record.q, record.s)
@@ -86,7 +109,7 @@ export default {
         attempt = '---'
       }
       const answer = record.a
-      const isCorrect = record.attempt === record.a
+      const isCorrect = record.isCorrect
       return {
         qNum,
         hand,
@@ -132,5 +155,8 @@ export default {
     font-style: italic;
     font-weight: bold;
     color: brown;
+  }
+  .reset-btn{
+    z-index: 9
   }
 </style>

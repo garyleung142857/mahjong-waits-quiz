@@ -66,12 +66,12 @@ const mutations = {
     state.currQna = qna
   },
   resetHistory (state) {
+    // Todo: generate new question
     state.selection = []
-    state.currentNum = 0
+    state.currentNum = 1  // still a question here
     state.correctCount = 0
     state.totalCount = 0
     state.history = []
-    // state.currQna = {}
   }
 }
 

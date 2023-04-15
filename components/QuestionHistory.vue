@@ -94,7 +94,7 @@ export default {
     },
     currentScore () {
       const totalCount = this.history.length
-      const correctCount = this.history.map(h => h.isCorrect).length
+      const correctCount = this.history.filter(r => r.isCorrect).length
       return `${correctCount} / ${totalCount}`
     },
   },

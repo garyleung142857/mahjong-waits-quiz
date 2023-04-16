@@ -4,7 +4,7 @@
     tile
     class="histories my-2"
   >
-    <v-row 
+    <v-row
       v-if="history.length > 0"
       no-gutters
     >
@@ -96,7 +96,7 @@ export default {
       const totalCount = this.history.length
       const correctCount = this.history.filter(r => r.isCorrect).length
       return `${correctCount} / ${totalCount}`
-    },
+    }
   },
   methods: {
     ...mapGetters('qna', ['getHistory']),

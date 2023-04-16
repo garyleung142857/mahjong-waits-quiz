@@ -31,6 +31,7 @@
           color="teal lighten-2"
           :ripple="false"
           @click="submit()"
+          :disabled="selection.length===0"
         >
           <v-icon> mdi-check </v-icon>
         </v-btn>
@@ -80,6 +81,7 @@ export default {
       this.clearSelection()
     },
     submit () {
+      if (this.selection.length === 0) return
       this.$emit('submitAnswer')
     }
   }

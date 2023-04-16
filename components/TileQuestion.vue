@@ -38,8 +38,8 @@ export default {
     min-height: 80px;
     justify-content: center;
     align-items: center;
-    border: 5px solid #E5EBD7;
-    border-radius: 10px !important;
+    border: 5px solid #445577;
+    border-radius: 5px !important;
     background-color: #FAFCFB;
     line-height: 1.15;
   }

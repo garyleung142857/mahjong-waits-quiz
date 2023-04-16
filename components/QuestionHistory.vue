@@ -12,7 +12,7 @@
         <v-btn
           v-longpress="resetHistory"
           text
-          class="reset-btn pa-2"
+          class="reset-btn px-4"
         >
           Hold to reset
         </v-btn>
@@ -126,8 +126,8 @@ export default {
   .histories{
     height: 300px;
     background-color: #FAFCFB;
-    border: 5px solid #a2d2ff;
-    border-radius: 10px !important;
+    border: 5px solid #445577;
+    border-radius: 5px !important;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */

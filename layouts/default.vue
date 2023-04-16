@@ -29,7 +29,7 @@ html{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background-color: #fcf4dd;
+  background-color: #bbdafc;
   max-width: 700px;
   min-width: 400px;
   margin: auto;

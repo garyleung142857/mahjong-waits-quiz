@@ -53,12 +53,6 @@ export default {
 }
 </script>
 <style scoped>
-.sticky{
-  position: sticky;
-  top: 20px;
-  z-index: 4;
-  background-color: rgb(252, 249, 243);
-}
 .side-btn{
   border: 3px solid grey;
 }

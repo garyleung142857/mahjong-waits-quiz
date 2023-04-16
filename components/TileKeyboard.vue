@@ -91,8 +91,8 @@ export default {
 <style scoped>
   .input-keyboard{
     align-self: center;
-    border: 5px rgb(139, 122, 105) solid;
-    border-radius: 10px;
+    border: 5px solid #445577;
+    border-radius: 5px;
     user-select: none;
     background-color: #FAFCFB;
   }
@@ -105,7 +105,7 @@ export default {
     font-weight: bold;
   }
   .selected{
-    outline: 3px solid #D4EEE3;
+    border-radius: 0px;
     background-color: #D4EEE3;
   }
 </style>

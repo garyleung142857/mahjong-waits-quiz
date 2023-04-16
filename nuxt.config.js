@@ -1,6 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: false, // worker require this to be false
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -24,10 +27,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~layouts/global.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/mousetrap',
+    '@/plugins/longpress'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,7 +55,8 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
+      light: true,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -66,5 +73,23 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend (config, ctx) {
+      if (ctx.isClient) {
+        config.module.rules.push(
+          {
+            test: /\.worker\.ts$/,
+            loader: 'worker-loader',
+            exclude: /(node_modules)/
+          }, {
+            test: /\.worker\.js$/,
+            loader: 'worker-loader',
+            exclude: /(node_modules)/
+          })
+      }
+    }
+  },
+
+  server: {
+    host: '0' // default: localhost
   }
 }

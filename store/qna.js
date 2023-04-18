@@ -4,7 +4,8 @@ const state = () => ({
   correctCount: 0,
   totalCount: 0,
   history: [],
-  currQna: {}
+  currQna: {},
+  currSuit: ['m', 'p', 's'][Math.floor(Math.random() * 3)]
 })
 
 const getters = {
@@ -21,7 +22,7 @@ const getters = {
       return {
         n: state.currentNum,
         q: state.currQna.q,
-        s: state.currQna.s
+        s: state.currSuit
       }
     }
   },
@@ -63,7 +64,12 @@ const mutations = {
   },
   setCurrQna (state, qna) {
     state.currentNum += 1
-    state.currQna = qna
+    const newSuit = ['m', 'p', 's'].filter(suit => suit !== state.currSuit)[Math.floor(Math.random() * 2)]
+    state.currQna = {
+      ...qna,
+      s: newSuit
+    }
+    state.currSuit = newSuit
   },
   resetHistory (state) {
     // Todo: generate new question

@@ -51,8 +51,7 @@ export const randomQuestion = () => {
     const u1 = ukeire1(hand1)
     return {
       q: tiles.join(''),
-      a: u1.ukeireList.join(''),
-      s: ['m', 'p', 's'][Math.floor(Math.random() * 3)]
+      a: u1.ukeireList.join('')
     }
   }
 }

@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "core-js": "^3.25.3",
+    "mousetrap": "^1.6.5",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
-    "vue-mousetrap": "^1.0.5",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
     "vuetify": "^2.6.10"

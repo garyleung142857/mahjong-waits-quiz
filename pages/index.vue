@@ -10,12 +10,11 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import QnaWorker from '~/scripts/qna.worker.ts'
-const worker = new QnaWorker()
 export default {
   name: 'IndexPage',
   data () {
     return {
-      qnaBank: null
+      worker: null
     }
   },
   computed: {
@@ -30,7 +29,8 @@ export default {
     this.setQuestion()
   },
   created () {
-    worker.addEventListener('message', (event) => {
+    this.worker = new QnaWorker()
+    this.worker.addEventListener('message', (event) => {
       this.setCurrQna(event.data.qna)
     })
   },
@@ -38,7 +38,7 @@ export default {
     ...mapGetters('qna', ['getHistory', 'getCurrQuestion', 'getTotalCorrect']),
     ...mapMutations('qna', ['appendHistory', 'clearSelection', 'setCurrQna', 'resetHistory']),
     setQuestion () {
-      worker.postMessage({})
+      this.worker.postMessage({})
     },
     submitAnswer () {
       this.appendHistory()

@@ -93,13 +93,12 @@ export default {
       return this.getHistory().map(r => this.formatRecord(r)).reverse()
     },
     currentScore () {
-      const totalCount = this.history.length
-      const correctCount = this.history.filter(r => r.isCorrect).length
+      const { correctCount, totalCount } = this.getCurrentScore()
       return `${correctCount} / ${totalCount}`
     }
   },
   methods: {
-    ...mapGetters('qna', ['getHistory']),
+    ...mapGetters('qna', ['getHistory', 'getCurrentScore']),
     ...mapMutations('qna', ['resetHistory']),
     formatRecord (record) {
       const qNum = record.n

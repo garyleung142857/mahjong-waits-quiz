@@ -16,7 +16,7 @@
           </v-btn>
         </template>
         <v-img
-          :src="require('@/assets/illustration.jpg')"
+          src="/illustration.jpg"
           class="d-flex align-center"
         />
       </v-dialog>
